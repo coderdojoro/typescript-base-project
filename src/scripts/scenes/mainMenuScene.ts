@@ -19,6 +19,9 @@ export default class MainMenuScene extends Phaser.Scene {
         this.load.image('phaser', 'assets/demoGame/phaser-dude.png');
         this.load.image('fps', 'assets/demoGame/fps.png');
         this.load.image('learn-more', 'assets/demoGame/phaser-learn-more.png');
+
+        this.load.spritesheet('dude-spritesheet', 'assets/demoGame/phaser-dude-spritesheet.png', { frameWidth: 256, frameHeight: 256 });
+        this.load.spritesheet('cat-spritesheet', 'assets/demoGame/cat-spritesheet.png', { frameWidth: 500, frameHeight: 400 });
     }
 
     create() {
@@ -95,6 +98,22 @@ export default class MainMenuScene extends Phaser.Scene {
             fontFamily: 'VT323'
         });
         this.fpsText.setOrigin(0, 0.5);
+
+        this.anims.create({
+            key: 'dude-anim',
+            frames: this.anims.generateFrameNumbers('dude-spritesheet', {}),
+            frameRate: 7,
+            repeat: -1
+        });
+        this.add.sprite(400, 380, 'phaser').play('dude-anim');
+
+        this.anims.create({
+            key: 'cat-anim',
+            frames: this.anims.generateFrameNumbers('cat-spritesheet', {}),
+            frameRate: 7,
+            repeat: -1
+        });
+        this.add.sprite(1600, 400, 'phaser').play('cat-anim');
     }
 
     update(time, delta) {
